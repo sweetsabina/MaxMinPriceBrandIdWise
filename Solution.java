@@ -9,12 +9,15 @@ import java.text.DecimalFormat;
 public class Solution {
 	
 	public static void main(String[] args) {
-		
+
+		//input array
 		String[] csv = {"APY,170.00","APY,185.00","AMZ,145.00","APY,130.00","AMZ,124.00","AMZ,115.00","APY,140.00"};
 		String brandId;
 		List<Double> allPrices;
 		Map<String,List<Double>> res = new HashMap<String,List<Double>>();
 		DecimalFormat df = new DecimalFormat("0.00");
+		
+		//put the brandId as key and all its prices as value in a map
 		for(String c : csv) {
 			brandId = c.split(",")[0];
 			if(res.containsKey(brandId)) {
@@ -26,6 +29,8 @@ public class Solution {
 				}
 			res.put(brandId,allPrices );
 			}
+
+		//sort the mapkeys in dictionary order
 		res = res.entrySet()
                .stream()
                .sorted((i1, i2)
@@ -35,8 +40,11 @@ public class Solution {
                    Map.Entry::getKey,
                    Map.Entry::getValue,
                    (e1, e2) -> e1, LinkedHashMap::new));
+		
 		String[] yelo = new String[res.size()];
 		int i =0;
+
+		//output array
 		for(Entry<String,List<Double>> t : res.entrySet()) {
 			yelo[i] = t.getKey()+","
 						+df.format(t.getValue().get(0))+","
