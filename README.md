@@ -3,7 +3,7 @@ Pay pay securities coding test question.
 
 **Input**
 Given an array of strings like below,
-branid,price
+brandid,price
 
 APY,170.00
 APY,185.00
